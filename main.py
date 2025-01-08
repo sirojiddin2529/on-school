@@ -20,7 +20,18 @@ def main() -> None:
     handles user registration and login, and provides an interface for enrolled students 
     to interact with courses and check grades.
     """
-    students_data = {}
+    students_data = {
+        100001: {
+            'email': 'example@gmail.com',
+            'name': 'Ali Valiyev',
+            'password': '1234'
+        },
+        100002: {
+            'email': 'bjfkabdsfabds',
+            'name': 'jkfbadjsbf',
+            'password': '324512345'
+        }
+    }
     courses_data = [
         {"course_name": "Python Basics", "instructor": "John Doe", "duration": "8 weeks", "price": 500},
         {"course_name": "Data Science 101", "instructor": "Jane Smith", "duration": "10 weeks", "price": 780}
@@ -47,7 +58,15 @@ def main() -> None:
         
         if choice == "1":
             students_data = students.register_student(students_data)
-
+        elif choice == "2":
+            user_id = students.login_student(students_data)
+            if user_id != -1:
+                while True:
+                    show_menu(user_menu, user=students_data[user_id])
+                    user_choice = input("Choose an option: ")
+                    if user_choice == '1':
+                        # TODO: kurslar royatini chiqarish
+                        pass
 
 if __name__ == "__main__":
     main()

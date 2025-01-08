@@ -23,11 +23,11 @@ def register_student(students_data: dict[str, dict[str, str]]) -> None:
     n = len(students_data)
     students_data[100000 + n + 1] = user
 
-    print("Registration successful! Welcome, Alice Smith.")
+    print(f"Registration successful! Welcome, {name}.")
 
     return students_data
 
-def login_student(students_data: dict[str, dict[str, str]]) -> str | None:
+def login_student(students_data: dict[str, dict[str, str]]) -> int:
     """
     Allows a student to log in by entering their email and password. 
     If the login is successful, it returns the student's name.
@@ -39,7 +39,16 @@ def login_student(students_data: dict[str, dict[str, str]]) -> str | None:
     Returns:
         str: The student's name if login is successful, else None.
     """
-    pass
+    email = input("Enter your email: ")
+    password = input("Enter your password: ")
+
+    for user_id in students_data:
+        if students_data[user_id]['email'] == email and students_data[user_id]['password'] == password:
+            print(f"Login successful! Welcome back, {students_data[user_id]['name']}.")
+            return user_id
+
+    print("User doesn't exist.")
+    return -1
 
 def enroll_in_course(
     courses_data: list[dict[str, str]], 
