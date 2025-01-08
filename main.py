@@ -1,4 +1,18 @@
+from os import system
 from school import students, courses, grades
+
+def show_menu(
+        menu: list[tuple[int, str]],
+        user: dict = {}
+    ) -> None:
+
+    print(
+        "=== Welcome to On-School ===" if len(menu) == 3 else f"\n--- Main Menu for {user['name']} ---",
+        end="\n\n"
+    )
+    
+    for option in menu:
+        print(f'{option[0]}. {option[1]}', end="\n")
 
 def main() -> None:
     """
@@ -13,8 +27,27 @@ def main() -> None:
     ]
     grades_data = {}
 
+    menu = [
+        (1, "Register"), (2, "Login"), (3, "Exit")
+    ]
+
+    user_menu = [
+        (1, "View Available Courses"),
+        (2, "Enroll in a Course"),
+        (3, "View My Courses"),
+        (4, "Check My Grades"),
+        (5, "Logout")
+    ]
+
+    system('clear')
+
     while True:
-        pass
+        show_menu(menu)
+        choice = input("\nSelect an option: ")
+        
+        if choice == "1":
+            students_data = students.register_student(students_data)
+
 
 if __name__ == "__main__":
     main()

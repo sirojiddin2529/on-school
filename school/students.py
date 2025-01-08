@@ -1,3 +1,5 @@
+from pprint import pprint
+
 def register_student(students_data: dict[str, dict[str, str]]) -> None:
     """
     Registers a new student by collecting their name, email, and password, 
@@ -7,7 +9,23 @@ def register_student(students_data: dict[str, dict[str, str]]) -> None:
         students_data (dict): A dictionary where student emails are keys 
                                and their details (name and password) are stored as values.
     """
-    pass
+    name = input("Enter your name: ")
+    email = input("Enter your email: ")
+    password = input("Enter your password: ")
+
+    user = {
+        "name": name,
+        "email": email,
+        "password": password,
+    }
+    # TODO: 1. validate name, email 2. shifrlash password
+    
+    n = len(students_data)
+    students_data[100000 + n + 1] = user
+
+    print("Registration successful! Welcome, Alice Smith.")
+
+    return students_data
 
 def login_student(students_data: dict[str, dict[str, str]]) -> str | None:
     """
